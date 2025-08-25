@@ -27,9 +27,9 @@ const inputYear = parseInt(document.getElementById('year').value, 10);
       months += 12;
     }
 
-    yearText.textContent = years + ' years';
-    monthText.textContent = months + ' months';
-    dayText.textContent = days + ' days';
+    yearText.firstChild.textContent = years;
+    monthText.firstChild.textContent = months;
+    dayText.firstChild.textContent = days;  
 }
 
 function estilarError(error) {
@@ -74,26 +74,26 @@ function calcularEdad(event){
   const month = document.getElementById('month-field');
   const year = document.getElementById('year-field');
   const texto = 'This field is required';
-
+  const texto2 = 'Must be a valid date';
   if (inpDay === "" &&  !dayUsed) {
     falloVacio(day, texto);
     dayUsed = true;
   } else if (checkBetweenDays(inpDay) && !dayUsed) {
-    falloVacio(day, 'Must be a valid day');
+    falloVacio(day, texto2);
     dayUsed = true;
   }
   if (inpMonth === "" && !monthUsed) {
     falloVacio(month, texto);
     monthUsed = true;
   } else if (checkBetweenMonths(inpMonth) && !monthUsed) {
-    falloVacio(month, 'Must be a valid month');
+    falloVacio(month, texto2);
     monthUsed = true;
   }
   if (inpYear === "" && !yearUsed) {
     falloVacio(year, texto);
     yearUsed = true;
   } else if (checkBetweenYears(inpYear) && !yearUsed) {
-    falloVacio(year, 'Must be a valid year');
+    falloVacio(year, texto2);
     yearUsed = true;
   }
 
@@ -103,12 +103,15 @@ function calcularEdad(event){
     calcular();
     if (dayUsed) {
       limpiar(document.getElementById('day-field'));
+      dayUsed = false;
     }
     if (monthUsed) {
       limpiar(document.getElementById('month-field'));
+      monthUsed = false;
     }
     if (yearUsed) {
       limpiar(document.getElementById('year-field'));
+      yearUsed = false;
     }
   }
 }
