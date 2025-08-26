@@ -86,6 +86,11 @@ input[type=submit]{
     border: none;
 }
 
+input[type=submit]:hover{
+    background-color: black;
+    cursor: pointer;
+}
+
 span{
     color: hsl(0, 1%, 44%);
     margin-bottom: 5px;
